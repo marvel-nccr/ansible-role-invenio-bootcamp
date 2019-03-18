@@ -1,0 +1,13 @@
+---
+invenio_virtualenv: "bootcamp"
+invenio_virtualenv_dir: "{{ ansible_env.HOME }}/.virtualenvs/{{ invenio_virtualenv}}"
+
+invenio_module_dir: "{{ ansible_env.HOME }}/mc-archive"
+invenio_datamodule_dir: "{{ ansible_env.HOME }}/mc-archive-datamodel"
+invenio_script: "{{ invenio_virtualenv_dir }}/bin/invenio"
+
+invenio_ssl_cert: "{{ invenio_module_dir}}/docker/nginx/test.crt"
+invenio_ssl_key: "{{ invenio_module_dir}}/docker/nginx/test.key"
+
+# used to run system services
+invenio_user: "{{ ansible_user }}"

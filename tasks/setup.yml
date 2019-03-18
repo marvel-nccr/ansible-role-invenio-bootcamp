@@ -1,0 +1,73 @@
+---
+- name: install apt packages
+  become: true
+  apt:
+    name:
+      - python-virtualenv
+      - virtualenvwrapper
+      - apt-utils
+      - software-properties-common
+      - apt-transport-https
+      - gnupg-agent
+      - ca-certificates
+      - git
+      - curl
+      - wget
+      - unzip
+      - python3-dev
+      - python3-pip
+      - libcairo2-dev
+      - fonts-dejavu
+      - libfreetype6-dev
+      - uswgi-plugin-python
+      - default-jsk
+      - xvfb
+      - libxi6
+      - libgconf-2-4
+    update_cache: true
+    cache_valid_time: 86400
+  register: apt_install
+
+- name: Set "python3" as the default "python"
+  shell: update-alternatives --install {{ item }}
+  with_items:
+    - /usr/bin/python python /usr/bin/python3 1
+    - /usr/bin/pip pip /usr/bin/pip3 1
+  when: apt_install.changed
+
+- name: set vm.max_map_count for elasticsearch
+  become: true
+  sysctl:
+    name: vm.max_map_count
+    value: 262144
+    state: present
+    sysctl_set: true
+
+- name: install pip dependencies
+  become: true
+  pip:
+    name:
+      - docker
+      - docker-compose
+      - cookiecutter
+      - pipenv
+# virtualenv: "{{ invenio_virtualenv_dir }}"
+# need to specify once the python version
+# virtualenv_python: python3.5
+
+
+- name: Add "$HOME/.local/bin" to the PATH if not already done
+  lineinfile:
+    path: "{{ ansible_env.HOME}}/{{ item }}"
+    line: "export PATH={{ ansible_env.HOME }}/.local.bin:$PATH"
+  with_items:
+    - .bashrc
+    - .profile
+
+- name: Set locales demanded by click
+  lineinfile:
+    path: "{{ ansible_env.HOME}}/.bashrc"
+    line: "{{ item }}"
+  with_items:
+    - export LC_ALL=C.UTF-8
+    - export LANG=C.UTF-8

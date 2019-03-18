@@ -1,0 +1,33 @@
+---
+allow_duplicates: false
+
+galaxy_info:
+  role_name: invenio_bootcamp
+  author: "MARVEL NCCR"
+  # yamllint disable-line rule:line-length
+  description: "An ansible role that prepares the stage for installing invenio v3 for the invenio bootcamp 2019."
+  license: MIT
+  min_ansible_version: 2.7
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+  galaxy_tags:
+    - ubuntu
+    - application
+    - science
+
+# dependencies:
+#   - role: geerlingguy.nodejs
+#     vars:
+#       nodejs_version: "10.x"
+#   - role: geerlingguy.docker
+#     vars:
+#       docker_users:
+#   - role: pixelart.chrome
+#     vars:
+#       chrome_release_channel: stable
+#   - role: rdeknijf.chromedriver
+#     vars:
+#       chromedriver_version: 2.31
