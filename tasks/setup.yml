@@ -19,8 +19,8 @@
       - libcairo2-dev
       - fonts-dejavu
       - libfreetype6-dev
-      - uswgi-plugin-python
-      - default-jsk
+      - uwsgi-plugin-python
+      - default-jdk
       - xvfb
       - libxi6
       - libgconf-2-4
@@ -48,7 +48,6 @@
   pip:
     name:
       - docker
-      - docker-compose
       - cookiecutter
       - pipenv
 # virtualenv: "{{ invenio_virtualenv_dir }}"

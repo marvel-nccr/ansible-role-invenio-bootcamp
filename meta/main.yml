@@ -18,16 +18,16 @@ galaxy_info:
     - application
     - science
 
-# dependencies:
-#   - role: geerlingguy.nodejs
-#     vars:
-#       nodejs_version: "10.x"
-#   - role: geerlingguy.docker
-#     vars:
-#       docker_users:
-#   - role: pixelart.chrome
-#     vars:
-#       chrome_release_channel: stable
-#   - role: rdeknijf.chromedriver
-#     vars:
-#       chromedriver_version: 2.31
+dependencies:
+  - role: geerlingguy.nodejs
+    vars:
+      nodejs_version: "10.x"
+  - role: geerlingguy.docker
+    vars:
+      docker_users:
+  - role: pixelart.chrome
+    vars:
+      chrome_release_channel: stable
+  - role: rdeknijf.chromedriver
+    vars:
+      chromedriver_version: 2.31
