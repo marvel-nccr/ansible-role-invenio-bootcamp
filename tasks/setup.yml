@@ -29,6 +29,7 @@
   register: apt_install
 
 - name: Set "python3" as the default "python"
+  become: true
   shell: update-alternatives --install {{ item }}
   with_items:
     - /usr/bin/python python /usr/bin/python3 1
@@ -48,12 +49,9 @@
   pip:
     name:
       - docker
+      - "docker-compose=={{ docker_compose_version }}"
       - cookiecutter
       - pipenv
-# virtualenv: "{{ invenio_virtualenv_dir }}"
-# need to specify once the python version
-# virtualenv_python: python3.5
-
 
 - name: Add "$HOME/.local/bin" to the PATH if not already done
   lineinfile:

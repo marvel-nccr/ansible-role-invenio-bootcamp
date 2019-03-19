@@ -20,14 +20,20 @@ galaxy_info:
 
 dependencies:
   - role: geerlingguy.nodejs
+    become: true
     vars:
-      nodejs_version: "10.x"
+      nodejs_version: "{{ invenio_bootcamp_nodejs_version }}"
   - role: geerlingguy.docker
+    become: true
     vars:
       docker_users:
+        - ubuntu
+      docker_compose_version: "{{ invenio_bootcamp_docker_compose_version }}"
   - role: pixelart.chrome
+    become: true
     vars:
       chrome_release_channel: stable
   - role: rdeknijf.chromedriver
+    become: true
     vars:
-      chromedriver_version: 2.31
+      chromedriver_version: "{{ invenio_bootcamp_chromedriver_version }}"
