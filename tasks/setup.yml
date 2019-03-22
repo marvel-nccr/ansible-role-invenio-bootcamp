@@ -30,7 +30,7 @@
 
 - name: Set "python3" as the default "python"
   become: true
-  shell: update-alternatives --install {{ item }}
+  command: update-alternatives --install {{ item }}
   with_items:
     - /usr/bin/python python /usr/bin/python3 1
     - /usr/bin/pip pip /usr/bin/pip3 1
@@ -55,7 +55,7 @@
 
 - name: Add "$HOME/.local/bin" to the PATH if not already done
   lineinfile:
-    path: "{{ ansible_env.HOME}}/{{ item }}"
+    path: "{{ ansible_env.HOME }}/{{ item }}"
     line: "export PATH={{ ansible_env.HOME }}/.local.bin:$PATH"
   with_items:
     - .bashrc
@@ -63,7 +63,7 @@
 
 - name: Set locales demanded by click
   lineinfile:
-    path: "{{ ansible_env.HOME}}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.bashrc"
     line: "{{ item }}"
   with_items:
     - export LC_ALL=C.UTF-8

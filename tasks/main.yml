@@ -1,5 +1,9 @@
 ---
+- include_tasks: ubuntu-16.04.yml
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
 - import_tasks: setup.yml
   tags: invenio_bootcamp_setup
+
 # - import_tasks: start.yml
 #   tags: invenio_bootcamp_start
